@@ -23,6 +23,8 @@ for im_file in glob("input/*.nii*"):
 
 print(f'{len(unique_subs)} subjects found for processing.')
 
+print(f'{len(unique_subs)} subjects found for processing.')
+
 # run pre-processing on each unique subID in the input dir
 # then setup pre-processed files for input into nnUNet tumor seg model
 for sub in unique_subs:
