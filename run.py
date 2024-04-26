@@ -12,13 +12,8 @@ for im_file in glob("input/*.nii*"):
         if this_sub not in unique_subs:
             unique_subs.append(this_sub)
 
-<<<<<<< HEAD
 print(f'{len(unique_subs)} subjects found for processing.')
 
-print(f'{len(unique_subs)} subjects found for processing.')
-
-=======
->>>>>>> parent of d871767 (first commit)
 # run pre-processing on each unique subID in the input dir
 # then setup pre-processed files for input into nnUNet tumor seg model
 for sub in unique_subs:
