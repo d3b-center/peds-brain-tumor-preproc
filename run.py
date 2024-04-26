@@ -7,10 +7,12 @@ CaPTk_dir='/opt/captk/1.8.1/usr' # path to install (in Docker container)
 unique_subs=[]
 for im_file in glob("input/*.nii*"):
     im_file_name = im_file.split('/')[-1]
-    if '_0000.nii' in im_file_name:
-        this_sub = im_file_name.split('_0000.nii')[0]
+    if '_FL' in im_file_name:
+        this_sub = im_file_name.split('_FL')[0]
         if this_sub not in unique_subs:
             unique_subs.append(this_sub)
+
+print(f'{len(unique_subs)} subjects found for processing.')
 
 # run pre-processing on each unique subID in the input dir
 # then setup pre-processed files for input into nnUNet tumor seg model
@@ -19,10 +21,10 @@ for sub in unique_subs:
     output_dir=f'{sub}'
     os.makedirs(output_dir) 
     # run the main pipeline
-    fl_im = glob(f'input/{sub}_0000.nii*')[0]
-    t1_im = glob(f'input/{sub}_0001.nii*')[0]
-    t1ce_im = glob(f'input/{sub}_0002.nii*')[0]
-    t2_im = glob(f'input/{sub}_0003.nii*')[0]
+    fl_im = glob(f'input/{sub}_FL*')[0]
+    t1ce_im = glob(f'input/{sub}_T1CE*')[0]
+    t2_im = glob(f'input/{sub}_T2*')[0]
+    t1_im = glob(f'input/{sub}_T1*')[0]
     print(f" ========== Running CaPTk BraTSPipeline for subject ID {sub} ==========")
     os.system(f'{CaPTk_dir}/bin/BraTSPipeline \
                 -t1 {t1_im} \
