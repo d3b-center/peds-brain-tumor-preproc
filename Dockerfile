@@ -7,4 +7,4 @@
 FROM cbica/captk:2021.03.29 AS preproc 
 
 COPY run.py run.py
-CMD [ "python3", "run.py" ]
+ENTRYPOINT [ "python3", "run.py" ]
